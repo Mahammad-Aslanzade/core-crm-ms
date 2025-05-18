@@ -2,3 +2,6 @@ server:
   port: ${SERVER_POST:8088}
   servlet:
     context-path: ${SERVLET_CONTEXT_PATH:/core-crm-ms/api}
+logging:
+  level:
+    sql: debug
