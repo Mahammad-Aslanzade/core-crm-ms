@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: core-crm-ms
+  profiles:
+    include:
+      - server
+      - db

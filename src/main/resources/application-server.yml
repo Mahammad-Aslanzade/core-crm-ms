@@ -1,0 +1,4 @@
+server:
+  port: ${SERVER_POST:8088}
+  servlet:
+    context-path: /core-crm-ms/api
