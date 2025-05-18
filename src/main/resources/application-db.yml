@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/core_crm_db
-    username: postgres
-    password: root123
+    url: ${DB_PATH:jdbc:postgresql://localhost:5432/core_crm_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:root123}
