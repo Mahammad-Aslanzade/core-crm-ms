@@ -21,6 +21,13 @@ public class CommonException extends RuntimeException {
         this.params = params;
     }
 
+    public CommonException(ExceptionEnums exceptionEnum, String message) {
+        this.exceptionCode = exceptionEnum.getExceptionCode();
+        this.status = exceptionEnum.getStatus();
+        this.message = message;
+        this.params = null;
+    }
+
     public CommonException(ExceptionEnums exceptionEnum) {
         this.exceptionCode = exceptionEnum.getExceptionCode();
         this.status = exceptionEnum.getStatus();

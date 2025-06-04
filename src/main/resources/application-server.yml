@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_POST:8088}
+  port: ${SERVER_PORT:8088}
   servlet:
     context-path: ${SERVLET_CONTEXT_PATH:/core-crm-ms/api}
 logging:

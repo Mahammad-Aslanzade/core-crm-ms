@@ -24,7 +24,7 @@ public class ErrorHandler {
     public ResponseEntity<CommonExceptionResponse> handleConstrainViolationException(ConstraintViolationException exception) {
         log.error(exception.getLocalizedMessage());
         CommonException commonException = new CommonException(ExceptionEnums.CONSTRAINT_VIOLATION_EXCEPTION, exception.getMessage(), null);
-        return new ResponseEntity<>(new CommonExceptionResponse(commonException), commonException.getStatus());
+        return typeOf(commonException);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -37,14 +37,11 @@ public class ErrorHandler {
         }
 
         CommonException commonException = new CommonException(ExceptionEnums.METHOD_ARGUMENT_NOT_VALID_EXCEPTION, params);
-        CommonExceptionResponse commonExceptionResponse = new CommonExceptionResponse(commonException);
-        return new ResponseEntity<>(commonExceptionResponse, commonException.getStatus());
+        return typeOf(commonException);
     }
 
-//
-//    private ResponseEntity<CommonExceptionResponse> generateResponse(ExceptionEnums exceptionEnum, Object param) {
-//        CommonExceptionResponse commonExceptionResponse = new CommonExceptionResponse(new CommonException(exceptionEnum));
-//        commonExceptionResponse.setParams(param);
-//        return new ResponseEntity<>(commonExceptionResponse, exceptionEnum.getStatus());
-//    }
+
+    private ResponseEntity<CommonExceptionResponse> typeOf(CommonException commonException){
+        return new ResponseEntity<>(new CommonExceptionResponse(commonException), commonException.getStatus());
+    }
 }
