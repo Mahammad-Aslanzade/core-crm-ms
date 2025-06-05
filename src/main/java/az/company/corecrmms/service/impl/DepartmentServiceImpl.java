@@ -30,7 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentResponseDto getById(String departmentId) {
-        Department department = getDepartmentByIdElseThrow(departmentId);
+        Department department = getEntityById(departmentId);
         return departmentMapper.mapToResponse(department);
     }
 
@@ -44,20 +44,19 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentResponseDto update(String departmentId, DepartmentRequestDto departmentRequestDto) {
-        Department department = getDepartmentByIdElseThrow(departmentId);
+        Department department = getEntityById(departmentId);
         validateDuplicationValueOfUpdateDepartment(department, departmentRequestDto);
         departmentMapper.updateDepartmentFromDto(departmentRequestDto, department);
         departmentRepository.save(department);
         return departmentMapper.mapToResponse(department);
     }
 
-
-    private Department getDepartmentByIdElseThrow(String departmentId) {
-        return departmentRepository.findById(departmentId)
+    @Override
+    public Department getEntityById(String id) {
+        return departmentRepository.findById(id)
                 .orElseThrow(
                         () -> new CommonException(ExceptionEnums.NOT_FOUND_EXCEPTION,
-                                String.format("Department couldn't find with provided id %s", departmentId), null
-                        )
+                                String.format("Department couldn't find with provided id %s", id))
                 );
     }
 
@@ -85,17 +84,17 @@ public class DepartmentServiceImpl implements DepartmentService {
     private void validateDuplicationValueOfCreateDepartment(DepartmentRequestDto departmentRequestDto) {
         if (departmentRepository.existsByName(departmentRequestDto.getName())) {
             throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
-                    String.format(DUPLICATE_MESSAGE_TEMPLATE, "name", departmentRequestDto.getName()), null);
+                    String.format(DUPLICATE_MESSAGE_TEMPLATE, "name", departmentRequestDto.getName()));
         }
 
         if (departmentRepository.existsByShortName(departmentRequestDto.getShortName())) {
             throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
-                    String.format(DUPLICATE_MESSAGE_TEMPLATE, "shortName", departmentRequestDto.getShortName()), null);
+                    String.format(DUPLICATE_MESSAGE_TEMPLATE, "shortName", departmentRequestDto.getShortName()));
         }
 
         if (departmentRepository.existsByHotCallNumber(departmentRequestDto.getHotCallNumber())) {
             throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
-                    String.format(DUPLICATE_MESSAGE_TEMPLATE, "hotCallNumber", departmentRequestDto.getHotCallNumber()), null);
+                    String.format(DUPLICATE_MESSAGE_TEMPLATE, "hotCallNumber", departmentRequestDto.getHotCallNumber()));
         }
     }
 
