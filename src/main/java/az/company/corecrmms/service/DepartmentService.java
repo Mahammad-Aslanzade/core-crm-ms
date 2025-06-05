@@ -2,6 +2,7 @@ package az.company.corecrmms.service;
 
 import az.company.corecrmms.dto.department.DepartmentRequestDto;
 import az.company.corecrmms.dto.department.DepartmentResponseDto;
+import az.company.corecrmms.entity.Department;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface DepartmentService {
     DepartmentResponseDto create(DepartmentRequestDto departmentRequestDto);
 
     DepartmentResponseDto update(String departmentId, DepartmentRequestDto departmentRequestDto);
+
+    Department getEntityById(String id);
 }
