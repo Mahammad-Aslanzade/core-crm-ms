@@ -5,7 +5,7 @@ import az.company.corecrmms.dto.job.JobRequestDto;
 import az.company.corecrmms.entity.Department;
 import az.company.corecrmms.entity.Job;
 import az.company.corecrmms.exception.CommonException;
-import az.company.corecrmms.exception.ExceptionEnums;
+import az.company.corecrmms.exception.ExceptionEnum;
 import az.company.corecrmms.mapper.JobMapper;
 import az.company.corecrmms.repository.JobRepository;
 import az.company.corecrmms.service.DepartmentService;
@@ -32,7 +32,7 @@ public class JobServiceImpl implements JobService {
     @Override
     public JobDto getById(String id) {
         Job job = jobRepository.findById(id).orElseThrow(
-                () -> new CommonException(ExceptionEnums.NOT_FOUND_EXCEPTION,
+                () -> new CommonException(ExceptionEnum.NOT_FOUND_EXCEPTION,
                         String.format("Job not found with provided id : %s", id)
                 )
         );
@@ -69,7 +69,7 @@ public class JobServiceImpl implements JobService {
     public Job getEntityById(String id) {
         return jobRepository.findById(id).orElseThrow(
                 () -> new CommonException(
-                        ExceptionEnums.NOT_FOUND_EXCEPTION, String.format("Job not found with provided id: %s", id)
+                        ExceptionEnum.NOT_FOUND_EXCEPTION, String.format("Job not found with provided id: %s", id)
                 )
         );
     }

@@ -4,7 +4,7 @@ import az.company.corecrmms.dto.department.DepartmentRequestDto;
 import az.company.corecrmms.dto.department.DepartmentResponseDto;
 import az.company.corecrmms.entity.Department;
 import az.company.corecrmms.exception.CommonException;
-import az.company.corecrmms.exception.ExceptionEnums;
+import az.company.corecrmms.exception.ExceptionEnum;
 import az.company.corecrmms.mapper.DepartmentMapper;
 import az.company.corecrmms.repository.DepartmentRepository;
 import az.company.corecrmms.service.DepartmentService;
@@ -55,7 +55,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department getEntityById(String id) {
         return departmentRepository.findById(id)
                 .orElseThrow(
-                        () -> new CommonException(ExceptionEnums.NOT_FOUND_EXCEPTION,
+                        () -> new CommonException(ExceptionEnum.NOT_FOUND_EXCEPTION,
                                 String.format("Department couldn't find with provided id %s", id))
                 );
     }
@@ -64,36 +64,36 @@ public class DepartmentServiceImpl implements DepartmentService {
     private void validateDuplicationValueOfUpdateDepartment(Department department, DepartmentRequestDto departmentRequestDto) {
 
         if (!department.getName().equals(departmentRequestDto.getName()) && departmentRepository.existsByName(departmentRequestDto.getName())) {
-            throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
+            throw new CommonException(ExceptionEnum.ALREADY_EXIST_EXCEPTION,
                     String.format(DUPLICATE_MESSAGE_TEMPLATE, "name", departmentRequestDto.getName()), null);
         }
 
         if (!department.getShortName().equals(departmentRequestDto.getShortName()) &&
                 departmentRepository.existsByShortName(departmentRequestDto.getShortName())) {
-            throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
+            throw new CommonException(ExceptionEnum.ALREADY_EXIST_EXCEPTION,
                     String.format(DUPLICATE_MESSAGE_TEMPLATE, "shortName", departmentRequestDto.getShortName()), null);
         }
 
         if (!department.getHotCallNumber().equals(departmentRequestDto.getHotCallNumber()) &&
                 departmentRepository.existsByHotCallNumber(departmentRequestDto.getHotCallNumber())) {
-            throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
+            throw new CommonException(ExceptionEnum.ALREADY_EXIST_EXCEPTION,
                     String.format(DUPLICATE_MESSAGE_TEMPLATE, "hotCallNumber", departmentRequestDto.getHotCallNumber()), null);
         }
     }
 
     private void validateDuplicationValueOfCreateDepartment(DepartmentRequestDto departmentRequestDto) {
         if (departmentRepository.existsByName(departmentRequestDto.getName())) {
-            throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
+            throw new CommonException(ExceptionEnum.ALREADY_EXIST_EXCEPTION,
                     String.format(DUPLICATE_MESSAGE_TEMPLATE, "name", departmentRequestDto.getName()));
         }
 
         if (departmentRepository.existsByShortName(departmentRequestDto.getShortName())) {
-            throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
+            throw new CommonException(ExceptionEnum.ALREADY_EXIST_EXCEPTION,
                     String.format(DUPLICATE_MESSAGE_TEMPLATE, "shortName", departmentRequestDto.getShortName()));
         }
 
         if (departmentRepository.existsByHotCallNumber(departmentRequestDto.getHotCallNumber())) {
-            throw new CommonException(ExceptionEnums.ALREADY_EXIST_EXCEPTION,
+            throw new CommonException(ExceptionEnum.ALREADY_EXIST_EXCEPTION,
                     String.format(DUPLICATE_MESSAGE_TEMPLATE, "hotCallNumber", departmentRequestDto.getHotCallNumber()));
         }
     }

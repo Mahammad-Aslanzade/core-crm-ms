@@ -1,4 +1,4 @@
-package az.company.corecrmms.logging;
+package az.company.corecrmms.filter;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;

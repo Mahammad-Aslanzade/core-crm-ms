@@ -1,6 +1,7 @@
 spring:
   application:
     name: core-crm-ms
+    api-key: ${API_KEY}
   profiles:
     include:
       - server

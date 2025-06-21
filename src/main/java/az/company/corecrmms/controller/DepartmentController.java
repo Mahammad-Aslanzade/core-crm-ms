@@ -44,7 +44,4 @@ public class DepartmentController {
         return departmentService.update(id, departmentRequestDto);
     }
 
-    @PostMapping("/test")
-    public void test(){}
-
 }
