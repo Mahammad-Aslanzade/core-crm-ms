@@ -1,5 +1,6 @@
 package az.company.corecrmms.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,6 +24,7 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private LocalDateTime createdAt;

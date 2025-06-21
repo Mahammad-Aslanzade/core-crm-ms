@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${DB_PATH:jdbc:postgresql://localhost:5432/core_crm_db}
+    url: ${DB_PATH:jdbc:postgresql://localhost:5432/core_crm_db?currentSchema=public}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:root123}
 
