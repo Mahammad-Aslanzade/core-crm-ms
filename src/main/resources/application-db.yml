@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${DB_PATH:jdbc:postgresql://10.68.17.119:5432/core_crm_db}
-    username: ${DB_USERNAME:myuser}
-    password: ${DB_PASSWORD:mypassword}
+    url: ${DB_PATH:jdbc:postgresql://localhost:5432/core_crm_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:root123}
 
   liquibase:
     change-log: liquibase/changelog-master.yml

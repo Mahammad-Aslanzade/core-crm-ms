@@ -16,6 +16,7 @@ import lombok.Setter;
 public class Job extends BaseEntity {
 
     private String title;
+    private String position;
 
     @ManyToOne
     @JoinColumn(name = "department_id")

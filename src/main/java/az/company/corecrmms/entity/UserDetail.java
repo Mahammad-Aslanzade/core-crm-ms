@@ -27,4 +27,5 @@ public class UserDetail {
     private BigDecimal currentSalary;
     private LocalDate employmentStartDate;
     private LocalDate employmentEndDate;
+    private String employmentTerminationReason;
 }
