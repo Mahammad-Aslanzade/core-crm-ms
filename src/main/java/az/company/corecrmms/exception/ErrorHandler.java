@@ -23,7 +23,7 @@ public class ErrorHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<CommonExceptionResponse> handleConstrainViolationException(ConstraintViolationException exception) {
         log.error(exception.getLocalizedMessage());
-        CommonException commonException = new CommonException(ExceptionEnums.CONSTRAINT_VIOLATION_EXCEPTION, exception.getMessage(), null);
+        CommonException commonException = new CommonException(ExceptionEnum.CONSTRAINT_VIOLATION_EXCEPTION, exception.getMessage(), null);
         return typeOf(commonException);
     }
 
@@ -36,7 +36,7 @@ public class ErrorHandler {
             System.out.println(fieldError.getField() + fieldError.getDefaultMessage());
         }
 
-        CommonException commonException = new CommonException(ExceptionEnums.METHOD_ARGUMENT_NOT_VALID_EXCEPTION, params);
+        CommonException commonException = new CommonException(ExceptionEnum.METHOD_ARGUMENT_NOT_VALID_EXCEPTION, params);
         return typeOf(commonException);
     }
 
