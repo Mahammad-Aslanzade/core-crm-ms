@@ -7,6 +7,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "\"user\"")
 public class User extends BaseEntity {
 
     private String name;
@@ -31,12 +33,12 @@ public class User extends BaseEntity {
     @JoinColumn(name = "detail_id")
     private UserDetail detail;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "user_job",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "job_id")
-//    )
-//    private List<Job> jobs;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_job",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "job_id")
+    )
+    private List<Job> jobs;
 
 }

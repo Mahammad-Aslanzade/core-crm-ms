@@ -1,5 +1,6 @@
 package az.company.corecrmms.service.impl;
 
+import az.company.corecrmms.dto.user.UserRequestDto;
 import az.company.corecrmms.dto.user.UserResponseDto;
 import az.company.corecrmms.entity.User;
 import az.company.corecrmms.mapper.UserMapper;
@@ -21,5 +22,16 @@ public class UserServiceImpl implements UserService {
     public List<UserResponseDto> getAll() {
         List<User> allUsers = userRepository.findAll();
         return userMapper.mapToResponseList(allUsers);
+    }
+
+    @Override
+    public UserResponseDto getById(String id) {
+        User user = userRepository.findById(id).orElseThrow();
+        return userMapper.mapToResponse(user);
+    }
+
+    @Override
+    public UserResponseDto update(String id, UserRequestDto userRequestDto) {
+        return null;
     }
 }
