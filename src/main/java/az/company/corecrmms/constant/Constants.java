@@ -2,6 +2,15 @@ package az.company.corecrmms.constant;
 
 public class Constants {
 
+    public static final String X_API_KEY = "X-API-KEY";
+
+    public static final String[] WHITE_LIST = {
+            "/actuator/health/**",
+            "/swagger-ui/**",
+            "/swagger-resources/*",
+            "/v3/api-docs/**"
+    };
+
     public static final String NAME_PATTERN_REGEX = "^[A-Z][a-zA-ZÀ-ÿ'’-]{1,49}$";
     public static final String NAME_PATTERN_MSG = "Name must start with a capital letter and contain only letters, hyphens, or apostrophes.";
 
@@ -14,6 +23,5 @@ public class Constants {
 
     public static final String PASSWORD_PATTERN_MSG =
             "Password must be 8–64 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character.";
-
 
 }
