@@ -1,0 +1,1 @@
+alter table job add column position_level VARCHAR(20);

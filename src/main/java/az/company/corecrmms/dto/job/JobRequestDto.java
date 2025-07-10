@@ -11,5 +11,7 @@ public class JobRequestDto {
     @NotNull
     private String title;
     @NotNull
+    private String positionLevel;
+    @NotNull
     private String departmentId;
 }

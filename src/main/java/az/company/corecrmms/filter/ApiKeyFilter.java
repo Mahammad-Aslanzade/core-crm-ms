@@ -1,6 +1,7 @@
 package az.company.corecrmms.filter;
 
 import az.company.corecrmms.exception.ExceptionEnum;
+import az.company.corecrmms.util.WhiteListValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -31,7 +32,11 @@ public class ApiKeyFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String apiKeyInHeader = request.getHeader("X-API-KEY");
-
+        String path = request.getRequestURI().substring(request.getContextPath().length());
+        if (WhiteListValidator.isWhitelisted(path)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         if (!Objects.equals(apiKeyInHeader, apikey)) {
             log.warn(
                     "[Unauthorized API Access] Invalid API key received from IP: {}, Path: {}, Provided-Key: {}",

@@ -9,5 +9,6 @@ import lombok.Setter;
 @Setter
 public class JobDto extends BaseResponse {
     private String title;
+    private String positionLevel;
     private DepartmentResponseDto department;
 }
