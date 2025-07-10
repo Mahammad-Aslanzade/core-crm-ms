@@ -1,5 +1,6 @@
 package az.company.corecrmms.controller;
 
+import az.company.corecrmms.dto.user.UserCreateDto;
 import az.company.corecrmms.dto.user.UserRequestDto;
 import az.company.corecrmms.dto.user.UserResponseDto;
 import az.company.corecrmms.service.UserService;
@@ -7,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,11 @@ public class UserController {
     @GetMapping("/{id}")
     public UserResponseDto getUserById(@PathVariable String id) {
         return userService.getById(id);
+    }
+
+    @PostMapping
+    public UserResponseDto create(@RequestBody @Valid UserCreateDto createDto) {
+        return userService.create(createDto);
     }
 
     @PutMapping("/{id}")

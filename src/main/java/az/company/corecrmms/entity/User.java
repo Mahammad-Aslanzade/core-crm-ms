@@ -1,6 +1,5 @@
 package az.company.corecrmms.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -28,6 +27,7 @@ public class User extends BaseEntity {
     private String email;
     private Integer internalNumber;
     private String currentJobId;
+    private String password;
 
     @OneToOne
     @JoinColumn(name = "detail_id")

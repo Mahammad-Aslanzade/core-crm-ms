@@ -1,11 +1,9 @@
 package az.company.corecrmms.dto.user;
 
-import az.company.corecrmms.dto.department.DepartmentResponseDto;
 import az.company.corecrmms.dto.job.JobDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Getter

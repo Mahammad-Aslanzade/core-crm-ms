@@ -1,5 +1,6 @@
 package az.company.corecrmms.service;
 
+import az.company.corecrmms.dto.user.UserCreateDto;
 import az.company.corecrmms.dto.user.UserRequestDto;
 import az.company.corecrmms.dto.user.UserResponseDto;
 
@@ -12,4 +13,6 @@ public interface UserService {
     UserResponseDto getById(String id);
 
     UserResponseDto update(String id, UserRequestDto userRequestDto);
+
+    UserResponseDto create(UserCreateDto createDto);
 }
