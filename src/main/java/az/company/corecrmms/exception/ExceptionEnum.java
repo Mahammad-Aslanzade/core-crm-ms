@@ -10,7 +10,12 @@ public enum ExceptionEnum {
     METHOD_ARGUMENT_NOT_VALID_EXCEPTION(DEFAULT_MESSAGES.METHOD_ARGUMENT_NOT_VALID, 1002, HttpStatus.BAD_REQUEST),
     CONSTRAINT_VIOLATION_EXCEPTION(null, 1003, HttpStatus.BAD_REQUEST),
     ALREADY_EXIST_EXCEPTION(DEFAULT_MESSAGES.ALREADY_EXIST, 1004, HttpStatus.BAD_REQUEST),
-    INVALID_API_KEY_EXCEPTION(DEFAULT_MESSAGES.INVALID_API_KEY, 1005, HttpStatus.UNAUTHORIZED)
+    INVALID_API_KEY_EXCEPTION(DEFAULT_MESSAGES.INVALID_API_KEY, 1005, HttpStatus.UNAUTHORIZED),
+
+
+    USER_NOT_FOUND_FOR_ID_EXCEPTION(DEFAULT_MESSAGES.USER_NOT_FOUND_FOR_ID, 1201, HttpStatus.NOT_FOUND),
+    USER_NOT_FOUND_FOR_EMAIL_EXCEPTION(DEFAULT_MESSAGES.USER_NOT_FOUND_FOR_EMAIL, 1202, HttpStatus.NOT_FOUND)
+
     ;
 
     private final int exceptionCode;
@@ -28,5 +33,9 @@ public enum ExceptionEnum {
         public static final String METHOD_ARGUMENT_NOT_VALID = "Argument not valid";
         public static final String ALREADY_EXIST = "Argument is already exist";
         public static final String INVALID_API_KEY = "Api key is not valid";
+
+        public static final String USER_NOT_FOUND_FOR_ID = "User not found with provided Id";
+        public static final String USER_NOT_FOUND_FOR_EMAIL = "User not found with provided email";
+
     }
 }

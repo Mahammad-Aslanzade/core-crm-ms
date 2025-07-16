@@ -28,6 +28,8 @@ public class User extends BaseEntity {
     private Integer internalNumber;
     private String currentJobId;
     private String password;
+    private Boolean active;
+    private Boolean verified;
 
     @OneToOne
     @JoinColumn(name = "detail_id")

@@ -24,4 +24,7 @@ public class Constants {
     public static final String PASSWORD_PATTERN_MSG =
             "Password must be 8–64 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character.";
 
+    public static final String VERIFICATION_EMAIL_SUBJECT = "User Account Verification";
+    public static final String VERIFICATION_EMAIL_TEMPLATE_NAME = "email-verification";
+
 }
