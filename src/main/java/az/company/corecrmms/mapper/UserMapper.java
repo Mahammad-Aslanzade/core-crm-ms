@@ -2,6 +2,7 @@ package az.company.corecrmms.mapper;
 
 import az.company.corecrmms.dto.user.UserCreateDto;
 import az.company.corecrmms.dto.user.UserResponseDto;
+import az.company.corecrmms.entity.Job;
 import az.company.corecrmms.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

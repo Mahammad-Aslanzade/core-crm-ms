@@ -52,12 +52,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto create(UserCreateDto createDto) {
-        User user = userMapper.mapToEntity(createDto);
-        Job currentJob = jobService.getEntityById(createDto.getCurrentJobId());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEmail(generateEmail(createDto.getName(), createDto.getSurname()));
-        user.setCurrentJobId(currentJob.getId());
+        User user = createUserContext(createDto);
         userRepository.save(user);
+        verificationService.sendVerification(user);
         log.info("User verification email sending to email: {}", user.getEmail());
 
         return userMapper.mapToResponse(user);
@@ -66,7 +63,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public GeneralResponse deactivate(String userId) {
         User user = getActiveUserById(userId);
-        user.setActive(false);
         userRepository.save(user);
         return new GeneralResponse(String.format("User with id %s deactivated", userId));
     }
@@ -74,8 +70,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public GeneralResponse verifyAccount(VerifyAccountRequestDto verifyAccountRequestDto) {
         User user = getUserByEmail(verifyAccountRequestDto.getEmail());
-        verificationService.verifyAccount(user);
-        return null;
+        verificationService.verifyAccount(user, verifyAccountRequestDto.getCode());
+        user.setVerified(true);
+        userRepository.save(user);
+        return new GeneralResponse("User has been verified");
+    }
+
+    private User createUserContext(UserCreateDto createDto) {
+        User user = userMapper.mapToEntity(createDto);
+        Job currentJob = jobService.getEntityById(createDto.getCurrentJobId());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEmail(generateEmail(createDto.getName(), createDto.getSurname()));
+        user.setCurrentJobId(currentJob.getId());
+        user.setVerified(false);
+        user.setActive(true);
+        return user;
     }
 
     public User getActiveUserById(String userId) {

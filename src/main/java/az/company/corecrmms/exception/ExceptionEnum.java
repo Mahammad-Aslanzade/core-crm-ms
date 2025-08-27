@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 public enum ExceptionEnum {
 
+    // General Exceptions
     NOT_FOUND_EXCEPTION(DEFAULT_MESSAGES.NOT_FOUND, 1001, HttpStatus.NOT_FOUND),
     METHOD_ARGUMENT_NOT_VALID_EXCEPTION(DEFAULT_MESSAGES.METHOD_ARGUMENT_NOT_VALID, 1002, HttpStatus.BAD_REQUEST),
     CONSTRAINT_VIOLATION_EXCEPTION(null, 1003, HttpStatus.BAD_REQUEST),
@@ -13,10 +14,14 @@ public enum ExceptionEnum {
     INVALID_API_KEY_EXCEPTION(DEFAULT_MESSAGES.INVALID_API_KEY, 1005, HttpStatus.UNAUTHORIZED),
 
 
+    // User base exceptions
     USER_NOT_FOUND_FOR_ID_EXCEPTION(DEFAULT_MESSAGES.USER_NOT_FOUND_FOR_ID, 1201, HttpStatus.NOT_FOUND),
-    USER_NOT_FOUND_FOR_EMAIL_EXCEPTION(DEFAULT_MESSAGES.USER_NOT_FOUND_FOR_EMAIL, 1202, HttpStatus.NOT_FOUND)
 
-    ;
+    USER_NOT_FOUND_FOR_EMAIL_EXCEPTION(DEFAULT_MESSAGES.USER_NOT_FOUND_FOR_EMAIL, 1202, HttpStatus.NOT_FOUND),
+
+    USER_VERIFICATION_DETAILS_NOT_FOUND_EXCEPTION(DEFAULT_MESSAGES.USER_VERIFICATION_DETAILS_NOT_FOUND, 1203, HttpStatus.NOT_FOUND),
+
+    VERIFICATION_FAILED_EXCEPTION(DEFAULT_MESSAGES.VERIFICATION_FAILED, 1204, HttpStatus.BAD_REQUEST);
 
     private final int exceptionCode;
     private final HttpStatus status;
@@ -36,6 +41,8 @@ public enum ExceptionEnum {
 
         public static final String USER_NOT_FOUND_FOR_ID = "User not found with provided Id";
         public static final String USER_NOT_FOUND_FOR_EMAIL = "User not found with provided email";
+        public static final String USER_VERIFICATION_DETAILS_NOT_FOUND = "Verification Details not found";
+        public static final String VERIFICATION_FAILED = "Verification failed";
 
     }
 }
